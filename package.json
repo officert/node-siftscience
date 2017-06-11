@@ -4,11 +4,14 @@
   "description": "Node HTTP client for Sift Science's API",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/officert/node-siftscience.git"
+  },
+  "scripts": {
+    "postinstall": "make post-install"
   },
   "keywords": [
     "Sift",
@@ -29,6 +32,17 @@
   },
   "homepage": "https://github.com/officert/node-siftscience#readme",
   "dependencies": {
-    "axios": "^0.16.2"
+    "axios": "0.16.2"
+  },
+  "devDependencies": {
+    "supertest": "3.0.0",
+    "babel-eslint": "7.1.1",
+    "eslint": "3.12.2",
+    "eslint-config-airbnb-base": "11.0.0",
+    "eslint-plugin-import": "2.2.0",
+    "istanbul": "0.4.5",
+    "mocha": "3.2.0",
+    "should": "11.1.2",
+    "sinon": "1.17.6"
   }
 }
