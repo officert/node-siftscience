@@ -1,0 +1,34 @@
+{
+  "name": "node-siftscience",
+  "version": "0.0.1",
+  "description": "Node HTTP client for Sift Science's API",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/officert/node-siftscience.git"
+  },
+  "keywords": [
+    "Sift",
+    "Science",
+    "Fraud",
+    "Node",
+    "HTTP",
+    "Rest",
+    "API",
+    "Client",
+    "HTTP",
+    "Client"
+  ],
+  "author": "Tim Officer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/officert/node-siftscience/issues"
+  },
+  "homepage": "https://github.com/officert/node-siftscience#readme",
+  "dependencies": {
+    "axios": "^0.16.2"
+  }
+}
