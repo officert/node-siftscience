@@ -6,6 +6,9 @@
   "scripts": {
     "test": "make test"
   },
+  "engines": {
+    "node": "6.10.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/officert/node-siftscience.git"
