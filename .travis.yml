@@ -13,6 +13,4 @@ addons:
     packages:
       - g++-4.8
 
-script: make test && make coverage
-
-script: make coveralls || true
+script: make test && make coverage && make coveralls || true
