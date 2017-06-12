@@ -4,12 +4,12 @@ const sinon = require('sinon');
 const _ = require('lodash');
 
 let siftScience;
-let httpClient;
+let v204;
 let sandbox;
 
 before(() => {
   siftScience = require('lib');
-  httpClient = require('lib/client/httpClient');
+  v204 = require('lib/client/v204');
 
   sandbox = sinon.sandbox.create();
 });
@@ -34,12 +34,12 @@ describe('siftScience', () => {
 
           let response = {};
 
-          before('stub httpClient.post()', () => {
-            postStub = sandbox.stub(httpClient, 'post')
+          before('stub v204.post()', () => {
+            postStub = sandbox.stub(v204, 'post')
               .returns(Promise.resolve(response));
           });
 
-          it('should call httpClient.post()', () => {
+          it('should call v204.post()', () => {
             return siftScienceClient.events.createOrder()
               .then(result => {
                 should.exist(result);
@@ -63,12 +63,12 @@ describe('siftScience', () => {
 
           let response = {};
 
-          before('stub httpClient.post()', () => {
-            postStub = sandbox.stub(httpClient, 'post')
+          before('stub v204.post()', () => {
+            postStub = sandbox.stub(v204, 'post')
               .returns(Promise.resolve(response));
           });
 
-          it('should call httpClient.post()', () => {
+          it('should call v204.post()', () => {
             return siftScienceClient.events.createOrder(data)
               .then(result => {
                 should.exist(result);
