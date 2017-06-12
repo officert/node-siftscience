@@ -40,7 +40,7 @@ describe('siftScience', () => {
           });
 
           it('should call httpClient.post()', () => {
-            siftScienceClient.events.createOrder()
+            return siftScienceClient.events.createOrder()
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response);
@@ -69,7 +69,7 @@ describe('siftScience', () => {
           });
 
           it('should call httpClient.post()', () => {
-            siftScienceClient.events.createOrder(data)
+            return siftScienceClient.events.createOrder(data)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response);
