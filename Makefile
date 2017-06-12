@@ -26,6 +26,9 @@ coverage: clean
 	"tests/**/*-test*" \
     -- -t 20000 --bail
 
+coveralls:
+	cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+
 open-coverage-report:
 	open ./coverage/lcov-report/index.html;
 
