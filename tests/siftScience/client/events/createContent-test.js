@@ -8,8 +8,8 @@ let v204;
 let sandbox;
 
 before(() => {
-  siftScience = require('lib');
-  v204 = require('lib/client/v204');
+  siftScience = require('../../../../lib');
+  v204 = require('../../../../lib/client/v204');
 
   sandbox = sinon.sandbox.create();
 });

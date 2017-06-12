@@ -3,7 +3,7 @@ const should = require('should');
 let SiftScienceClient;
 
 before(() => {
-  SiftScienceClient = require('lib/client');
+  SiftScienceClient = require('../../../lib/client');
 });
 
 describe('siftScience', () => {

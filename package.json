@@ -4,7 +4,7 @@
   "description": "Node HTTP client for Sift Science's API",
   "main": "index.js",
   "scripts": {
-    "postinstall": "make post-install"
+    "test": "make test"
   },
   "engines": {
     "node": "6.10.3"

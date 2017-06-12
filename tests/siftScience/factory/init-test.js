@@ -4,8 +4,8 @@ let SiftScience;
 let SiftScienceClient;
 
 before(() => {
-  SiftScience = require('lib');
-  SiftScienceClient = require('lib/client');
+  SiftScience = require('../../../lib');
+  SiftScienceClient = require('../../../lib/client');
 });
 
 describe('siftScience', () => {

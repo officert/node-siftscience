@@ -6,7 +6,7 @@ let v204;
 let sandbox;
 
 before(() => {
-  v204 = require('lib/client/v204');
+  v204 = require('../../../../../lib/client/v204');
 
   sandbox = sinon.sandbox.create();
 });

@@ -8,11 +8,6 @@ default:
 clean:
 	rm -rf coverage;
 
-post-install:
-	cd node_modules; \
-	ln -nsf ../lib; \
-	ln -nsf ../tests; \
-
 test: eslint test-unit
 
 test-unit:
