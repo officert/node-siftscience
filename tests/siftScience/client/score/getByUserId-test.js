@@ -44,7 +44,7 @@ describe('siftScience', () => {
         describe('when called with a userId', () => {
           let userId = '123';
           let response = {
-            body: {}
+            data: {}
           };
 
           let getStub;
@@ -58,7 +58,7 @@ describe('siftScience', () => {
             return siftScienceClient.score.getByUserId(userId)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 getStub.callCount.should.equal(1);
                 getStub.args[0][0].should.equal(`/users/${userId}/score`);
@@ -72,7 +72,7 @@ describe('siftScience', () => {
             foo: 'bar'
           };
           let response = {
-            body: {}
+            data: {}
           };
 
           let getStub;
@@ -86,7 +86,7 @@ describe('siftScience', () => {
             return siftScienceClient.score.getByUserId(userId, params)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 getStub.callCount.should.equal(1);
                 getStub.args[0][0].should.equal(`/users/${userId}/score`);

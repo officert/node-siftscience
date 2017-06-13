@@ -45,7 +45,7 @@ describe('siftScience', () => {
         describe('when called with a userId', () => {
           let userId = '123';
           let response = {
-            body: {}
+            data: {}
           };
 
           let postStub;
@@ -59,7 +59,7 @@ describe('siftScience', () => {
             return siftScienceClient.labels.createByUserId(userId)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 postStub.callCount.should.equal(1);
                 postStub.args[0][0].should.equal(`/users/${userId}/labels`);
@@ -73,7 +73,7 @@ describe('siftScience', () => {
             foo: 'bar'
           };
           let response = {
-            body: {}
+            data: {}
           };
 
           let postStub;
@@ -87,7 +87,7 @@ describe('siftScience', () => {
             return siftScienceClient.labels.createByUserId(userId, params)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 postStub.callCount.should.equal(1);
                 postStub.args[0][0].should.equal(`/users/${userId}/labels`);

@@ -44,7 +44,7 @@ describe('siftScience', () => {
         describe('when called with a userId', () => {
           let userId = '123';
           let response = {
-            body: {}
+            data: {}
           };
 
           let deleteStub;
@@ -58,7 +58,7 @@ describe('siftScience', () => {
             return siftScienceClient.labels.deleteByUserId(userId)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 deleteStub.callCount.should.equal(1);
                 deleteStub.args[0][0].should.equal(`/users/${userId}/labels`);
@@ -72,7 +72,7 @@ describe('siftScience', () => {
             foo: 'bar'
           };
           let response = {
-            body: {}
+            data: {}
           };
 
           let deleteStub;
@@ -86,7 +86,7 @@ describe('siftScience', () => {
             return siftScienceClient.labels.deleteByUserId(userId, params)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 deleteStub.callCount.should.equal(1);
                 deleteStub.args[0][0].should.equal(`/users/${userId}/labels`);

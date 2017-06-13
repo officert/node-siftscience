@@ -33,7 +33,7 @@ describe('siftScience', () => {
           let postStub;
 
           let response = {
-            body: {}
+            data: {}
           };
 
           before('stub v204.post()', () => {
@@ -45,7 +45,7 @@ describe('siftScience', () => {
             return siftScienceClient.events.logout()
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 postStub.callCount.should.equal(1);
                 postStub.args[0][0].should.equal('/events');
@@ -64,7 +64,7 @@ describe('siftScience', () => {
           let postStub;
 
           let response = {
-            body: {}
+            data: {}
           };
 
           before('stub v204.post()', () => {
@@ -76,7 +76,7 @@ describe('siftScience', () => {
             return siftScienceClient.events.logout(data)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response.body);
+                result.should.deepEqual(response.data);
 
                 postStub.callCount.should.equal(1);
                 postStub.args[0][0].should.equal('/events');
