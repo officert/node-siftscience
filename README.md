@@ -33,8 +33,8 @@ client.events.create({
 
 ## Table of Contents
 
-* [Events](#events)
-* [Labels](#labels)
+- [Events](#events)
+- [Labels](#labels)
 
 ## Events
 
@@ -230,4 +230,22 @@ client.events.verification({
 });
 ```
 
-##Labels
+## Labels
+
+### [Label User](https://siftscience.com/developers/docs/curl/labels-api/label-user)
+
+```javascript
+client.events.createByUserId('userId', {
+  $type: 'your custom event',
+  $is_bad : true,
+  $abuse_type: 'payment_abuse'
+});
+```
+
+### [Unlabel User](https://siftscience.com/developers/docs/curl/labels-api/unlabel-user)
+
+```javascript
+client.events.deleteByUserId('userId', {
+  $abuse_type: 'payment_abuse'
+});
+```
