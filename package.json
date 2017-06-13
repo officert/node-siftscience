@@ -1,6 +1,6 @@
 {
   "name": "node-siftscience",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Node HTTP client for Sift Science's API",
   "main": "index.js",
   "scripts": {
