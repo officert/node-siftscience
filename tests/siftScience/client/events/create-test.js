@@ -86,16 +86,16 @@ describe('siftScience', () => {
           });
         });
 
-        describe('when called with options', () => {
+        describe('when called with params', () => {
           let data = {
             foo: 'bar'
           };
-          let options = {
-            returnScore: true,
-            abuseTypes: [
+          let params = {
+            $return_score: true,
+            $abuse_types: [
               'payment_abuse',
               'promotion_abuse'
-            ]
+            ].join(',')
           };
           let postStub;
 
@@ -109,7 +109,7 @@ describe('siftScience', () => {
           });
 
           it('should call v204.post()', () => {
-            return siftScienceClient.events.create(data, options)
+            return siftScienceClient.events.create(data, params)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response.body);
@@ -120,10 +120,7 @@ describe('siftScience', () => {
                   $api_key: key
                 }));
                 postStub.args[0][2].should.deepEqual({
-                  params: {
-                    return_score: options.returnScore,
-                    abuse_types: options.abuseTypes.join(',')
-                  }
+                  params
                 });
               });
           });

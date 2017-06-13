@@ -1,4 +1,3 @@
-const Promise = require('bluebird');
 const should = require('should');
 const sinon = require('sinon');
 
@@ -15,8 +14,8 @@ before(() => {
 
 describe('siftScience', () => {
   describe('client', () => {
-    describe('labels', () => {
-      describe('createByUserId', () => {
+    describe('score', () => {
+      describe('getByUserId', () => {
         afterEach(() => {
           sandbox.restore();
         });
@@ -32,7 +31,7 @@ describe('siftScience', () => {
           let userId = null;
 
           it('should reject with an error', () => {
-            return siftScienceClient.labels.createByUserId(userId)
+            return siftScienceClient.score.getByUserId(userId)
               .then(should.not.exist)
               .catch(err => {
                 should.exist(err);
@@ -48,21 +47,21 @@ describe('siftScience', () => {
             body: {}
           };
 
-          let postStub;
+          let getStub;
 
-          before('stub v204.post()', () => {
-            postStub = sandbox.stub(v204, 'post')
+          before('stub v204.get()', () => {
+            getStub = sandbox.stub(v204, 'get')
               .returns(Promise.resolve(response));
           });
 
-          it('should call v204.post()', () => {
-            return siftScienceClient.labels.createByUserId(userId)
+          it('should call v204.get()', () => {
+            return siftScienceClient.score.getByUserId(userId)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response.body);
 
-                postStub.callCount.should.equal(1);
-                postStub.args[0][0].should.equal(`/users/${userId}/labels`);
+                getStub.callCount.should.equal(1);
+                getStub.args[0][0].should.equal(`/users/${userId}/score`);
               });
           });
         });
@@ -76,22 +75,24 @@ describe('siftScience', () => {
             body: {}
           };
 
-          let postStub;
+          let getStub;
 
-          before('stub v204.post()', () => {
-            postStub = sandbox.stub(v204, 'post')
+          before('stub v204.get()', () => {
+            getStub = sandbox.stub(v204, 'get')
               .returns(Promise.resolve(response));
           });
 
-          it('should call v204.post()', () => {
-            return siftScienceClient.labels.createByUserId(userId, params)
+          it('should call v204.get()', () => {
+            return siftScienceClient.score.getByUserId(userId, params)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response.body);
 
-                postStub.callCount.should.equal(1);
-                postStub.args[0][0].should.equal(`/users/${userId}/labels`);
-                postStub.args[0][1].should.deepEqual(params);
+                getStub.callCount.should.equal(1);
+                getStub.args[0][0].should.equal(`/users/${userId}/score`);
+                getStub.args[0][1].should.deepEqual({
+                  params
+                });
               });
           });
         });

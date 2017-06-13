@@ -35,6 +35,7 @@ client.events.create({
 
 - [Events](#events)
 - [Labels](#labels)
+- [Score](#score)
 
 ## Events
 
@@ -238,7 +239,7 @@ client.events.verification({
 client.labels.createByUserId('userId', {
   $type: 'your custom event',
   $is_bad : true,
-  $abuse_type: 'payment_abuse'
+  $abuse_types: 'payment_abuse,promotion_abuse'
 });
 ```
 
@@ -246,6 +247,29 @@ client.labels.createByUserId('userId', {
 
 ```javascript
 client.labels.deleteByUserId('userId', {
-  $abuse_type: 'payment_abuse'
+  $abuse_types: 'payment_abuse,promotion_abuse'
+});
+```
+
+## Score
+
+### [User Score](https://siftscience.com/developers/docs/curl/score-api/score-api)
+
+```javascript
+client.score.getByUserId('userId', {
+  $abuse_types: 'payment_abuse,promotion_abuse'
+});
+```
+
+You can also ask the API to return a user's score when creating [events](#events).
+
+```javascript
+client.events.create({
+  $type: 'your custom event',
+  $user_id : '123',
+  $session_id: 'gigtleqddo84l8cm15qe4il'
+}, { //2nd argument are query string params
+  $return_score: true,
+  $abuse_types: 'payment_abuse,promotion_abuse'
 });
 ```
