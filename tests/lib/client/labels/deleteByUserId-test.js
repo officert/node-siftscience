@@ -2,12 +2,12 @@ const should = require('should');
 const sinon = require('sinon');
 
 let siftScience;
-let v204;
+let v204HttpClient;
 let sandbox;
 
 before(() => {
   siftScience = require('../../../../lib');
-  v204 = require('../../../../lib/client/v204');
+  v204HttpClient = require('../../../../lib/client/v204HttpClient');
 
   sandbox = sinon.sandbox.create();
 });
@@ -49,12 +49,12 @@ describe('lib', () => {
 
           let deleteStub;
 
-          before('stub v204.delete()', () => {
-            deleteStub = sandbox.stub(v204, 'delete')
+          before('stub v204HttpClient.delete()', () => {
+            deleteStub = sandbox.stub(v204HttpClient, 'delete')
               .returns(Promise.resolve(response));
           });
 
-          it('should call v204.delete()', () => {
+          it('should call v204HttpClient.delete()', () => {
             return siftScienceClient.labels.deleteByUserId(userId)
               .then(result => {
                 should.exist(result);
@@ -77,12 +77,12 @@ describe('lib', () => {
 
           let deleteStub;
 
-          before('stub v204.delete()', () => {
-            deleteStub = sandbox.stub(v204, 'delete')
+          before('stub v204HttpClient.delete()', () => {
+            deleteStub = sandbox.stub(v204HttpClient, 'delete')
               .returns(Promise.resolve(response));
           });
 
-          it('should call v204.delete()', () => {
+          it('should call v204HttpClient.delete()', () => {
             return siftScienceClient.labels.deleteByUserId(userId, params)
               .then(result => {
                 should.exist(result);
