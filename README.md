@@ -33,9 +33,22 @@ client.events.create({
 
 ## Table of Contents
 
+- [Debug Mode](#debug mode)
+
 - [Events](#events)
+
 - [Labels](#labels)
 - [Score](#score)
+
+## Debug mode
+
+When creating your Sift Science Client instance you can put it in debug mode to log any errors
+
+```javascript
+const client = siftScience.init('your API Key', {
+  debugMode: true
+});
+```
 
 ## Events
 
