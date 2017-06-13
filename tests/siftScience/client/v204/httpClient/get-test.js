@@ -26,7 +26,7 @@ describe('siftScience', () => {
 
             let getStub;
 
-            before('stub v204.get()', () => {
+            before('stub v204._client.get()', () => {
               getStub = sandbox.stub(v204._client, 'get')
                 .returns(Promise.resolve(expectedResponse));
             });
@@ -50,7 +50,7 @@ describe('siftScience', () => {
 
             let getStub;
 
-            before('stub v204.get()', () => {
+            before('stub v204._client.get()', () => {
               getStub = sandbox.stub(v204._client, 'get')
                 .returns(Promise.resolve(expectedResponse));
             });
@@ -76,7 +76,7 @@ describe('siftScience', () => {
 
             let getStub;
 
-            before('stub v204.get()', () => {
+            before('stub v204._client.get()', () => {
               getStub = sandbox.stub(v204._client, 'get')
                 .returns(Promise.resolve(expectedResponse));
             });

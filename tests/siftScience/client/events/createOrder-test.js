@@ -32,7 +32,9 @@ describe('siftScience', () => {
         describe('when called with nothing', () => {
           let postStub;
 
-          let response = {};
+          let response = {
+            body: {}
+          };
 
           before('stub v204.post()', () => {
             postStub = sandbox.stub(v204, 'post')
@@ -43,7 +45,7 @@ describe('siftScience', () => {
             return siftScienceClient.events.createOrder()
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response);
+                result.should.deepEqual(response.body);
 
                 postStub.callCount.should.equal(1);
                 postStub.args[0][0].should.equal('/events');
@@ -61,7 +63,9 @@ describe('siftScience', () => {
           };
           let postStub;
 
-          let response = {};
+          let response = {
+            body: {}
+          };
 
           before('stub v204.post()', () => {
             postStub = sandbox.stub(v204, 'post')
@@ -72,7 +76,7 @@ describe('siftScience', () => {
             return siftScienceClient.events.createOrder(data)
               .then(result => {
                 should.exist(result);
-                result.should.deepEqual(response);
+                result.should.deepEqual(response.body);
 
                 postStub.callCount.should.equal(1);
                 postStub.args[0][0].should.equal('/events');

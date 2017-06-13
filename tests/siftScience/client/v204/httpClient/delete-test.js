@@ -26,7 +26,7 @@ describe('siftScience', () => {
 
             let deleteStub;
 
-            before('stub v204.delete()', () => {
+            before('stub v204._client.delete()', () => {
               deleteStub = sandbox.stub(v204._client, 'delete')
                 .returns(Promise.resolve(expectedResponse));
             });
@@ -50,7 +50,7 @@ describe('siftScience', () => {
 
             let deleteStub;
 
-            before('stub v204.delete()', () => {
+            before('stub v204._client.delete()', () => {
               deleteStub = sandbox.stub(v204._client, 'delete')
                 .returns(Promise.resolve(expectedResponse));
             });
@@ -76,7 +76,7 @@ describe('siftScience', () => {
 
             let deleteStub;
 
-            before('stub v204.delete()', () => {
+            before('stub v204._client.delete()', () => {
               deleteStub = sandbox.stub(v204._client, 'delete')
                 .returns(Promise.resolve(expectedResponse));
             });

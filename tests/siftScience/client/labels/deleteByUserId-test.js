@@ -46,20 +46,22 @@ describe('siftScience', () => {
           let params = {
             foo: 'bar'
           };
-          let expectedResponse = {};
+          let response = {
+            body: {}
+          };
 
           let deleteStub;
 
-          before('stub v204._client.delete()', () => {
-            deleteStub = sandbox.stub(v204._client, 'delete')
-              .returns(Promise.resolve(expectedResponse));
+          before('stub v204.delete()', () => {
+            deleteStub = sandbox.stub(v204, 'delete')
+              .returns(Promise.resolve(response));
           });
 
-          it('should call v204._client.delete()', () => {
+          it('should call v204.delete()', () => {
             return siftScienceClient.labels.deleteByUserId(userId, params)
-              .then(response => {
-                should.exist(response);
-                response.should.deepEqual(expectedResponse);
+              .then(result => {
+                should.exist(result);
+                result.should.deepEqual(response.body);
 
                 deleteStub.callCount.should.equal(1);
                 deleteStub.args[0][0].should.equal(`/users/${userId}/labels`);

@@ -22,13 +22,13 @@ describe('siftScience', () => {
 
           describe('when no path is passed', () => {
             let path = null;
-            let expectedResponse = {};
+            let response = {};
 
             let postStub;
 
-            before('stub v204.post()', () => {
+            before('stub v204._client.post()', () => {
               postStub = sandbox.stub(v204._client, 'post')
-                .returns(Promise.resolve(expectedResponse));
+                .returns(Promise.resolve(response));
             });
 
             it('should reject with an error', () => {
@@ -46,20 +46,20 @@ describe('siftScience', () => {
 
           describe('when a path is passed', () => {
             let path = '/foobar';
-            let expectedResponse = {};
+            let response = {};
 
             let postStub;
 
             before('stub v204.post()', () => {
-              postStub = sandbox.stub(v204._client, 'post')
-                .returns(Promise.resolve(expectedResponse));
+              postStub = sandbox.stub(v204, 'post')
+                .returns(Promise.resolve(response));
             });
 
             it('should resolve and call v204Client._client.post()', () => {
               return v204.post(path)
                 .then(response => {
                   should.exist(response);
-                  response.should.deepEqual(expectedResponse);
+                  response.should.deepEqual(response);
 
                   postStub.callCount.should.equal(1);
                   postStub.args[0][0].should.equal(path);
@@ -72,20 +72,20 @@ describe('siftScience', () => {
             let body = {
               key: 'value'
             };
-            let expectedResponse = {};
+            let response = {};
 
             let postStub;
 
-            before('stub v204.post()', () => {
+            before('stub v204._client.post()', () => {
               postStub = sandbox.stub(v204._client, 'post')
-                .returns(Promise.resolve(expectedResponse));
+                .returns(Promise.resolve(response));
             });
 
             it('should resolve and call v204Client._client.post()', () => {
               return v204.post(path, body)
-                .then(response => {
-                  should.exist(response);
-                  response.should.deepEqual(expectedResponse);
+                .then(result => {
+                  should.exist(result);
+                  result.should.deepEqual(response);
 
                   postStub.callCount.should.equal(1);
                   postStub.args[0][0].should.equal(path);
@@ -102,20 +102,20 @@ describe('siftScience', () => {
             let params = {
               query: 'string'
             };
-            let expectedResponse = {};
+            let response = {};
 
             let postStub;
 
-            before('stub v204.post()', () => {
+            before('stub v204._client.post()', () => {
               postStub = sandbox.stub(v204._client, 'post')
-                .returns(Promise.resolve(expectedResponse));
+                .returns(Promise.resolve(response));
             });
 
             it('should resolve and call v204Client._client.post()', () => {
               return v204.post(path, body, params)
-                .then(response => {
-                  should.exist(response);
-                  response.should.deepEqual(expectedResponse);
+                .then(result => {
+                  should.exist(result);
+                  result.should.deepEqual(response);
 
                   postStub.callCount.should.equal(1);
                   postStub.args[0][0].should.equal(path);

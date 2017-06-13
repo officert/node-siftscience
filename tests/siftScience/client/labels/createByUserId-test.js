@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 const should = require('should');
 const sinon = require('sinon');
 
@@ -46,20 +47,22 @@ describe('siftScience', () => {
           let params = {
             foo: 'bar'
           };
-          let expectedResponse = {};
+          let response = {
+            body: {}
+          };
 
           let postStub;
 
-          before('stub v204._client.post()', () => {
-            postStub = sandbox.stub(v204._client, 'post')
-              .returns(Promise.resolve(expectedResponse));
+          before('stub v204.post()', () => {
+            postStub = sandbox.stub(v204, 'post')
+              .returns(Promise.resolve(response));
           });
 
-          it('should call v204._client.post()', () => {
+          it('should call v204.post()', () => {
             return siftScienceClient.labels.createByUserId(userId, params)
-              .then(response => {
-                should.exist(response);
-                response.should.deepEqual(expectedResponse);
+              .then(result => {
+                should.exist(result);
+                result.should.deepEqual(response.body);
 
                 postStub.callCount.should.equal(1);
                 postStub.args[0][0].should.equal(`/users/${userId}/labels`);
