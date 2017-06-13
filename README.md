@@ -235,7 +235,7 @@ client.events.verification({
 ### [Label User](https://siftscience.com/developers/docs/curl/labels-api/label-user)
 
 ```javascript
-client.events.createByUserId('userId', {
+client.labels.createByUserId('userId', {
   $type: 'your custom event',
   $is_bad : true,
   $abuse_type: 'payment_abuse'
@@ -245,7 +245,7 @@ client.events.createByUserId('userId', {
 ### [Unlabel User](https://siftscience.com/developers/docs/curl/labels-api/unlabel-user)
 
 ```javascript
-client.events.deleteByUserId('userId', {
+client.labels.deleteByUserId('userId', {
   $abuse_type: 'payment_abuse'
 });
 ```
