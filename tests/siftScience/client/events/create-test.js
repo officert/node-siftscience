@@ -85,6 +85,49 @@ describe('siftScience', () => {
               });
           });
         });
+
+        describe('when called with options', () => {
+          let data = {
+            foo: 'bar'
+          };
+          let options = {
+            returnScore: true,
+            abuseTypes: [
+              'payment_abuse',
+              'promotion_abuse'
+            ]
+          };
+          let postStub;
+
+          let response = {
+            body: {}
+          };
+
+          before('stub v204.post()', () => {
+            postStub = sandbox.stub(v204, 'post')
+              .returns(Promise.resolve(response));
+          });
+
+          it('should call v204.post()', () => {
+            return siftScienceClient.events.create(data, options)
+              .then(result => {
+                should.exist(result);
+                result.should.deepEqual(response.body);
+
+                postStub.callCount.should.equal(1);
+                postStub.args[0][0].should.equal('/events');
+                postStub.args[0][1].should.deepEqual(_.extend(data, {
+                  $api_key: key
+                }));
+                postStub.args[0][2].should.deepEqual({
+                  params: {
+                    return_score: options.returnScore,
+                    abuse_types: options.abuseTypes.join(',')
+                  }
+                });
+              });
+          });
+        });
       });
     });
   });

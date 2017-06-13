@@ -29,3 +29,25 @@ client.events.create({
   $type: 'your custom event'
 });
 ```
+
+
+### Events
+
+##### [Custom Events](https://siftscience.com/developers/docs/curl/events-api/custom-events)
+``` js
+client.events.create({
+  $type: 'your custom event',
+  $user_id : '123',
+  $session_id: 'gigtleqddo84l8cm15qe4il'
+});
+```
+
+The library also supports shortcuts for Sift Science's [Reserved Events](https://siftscience.com/developers/docs/curl/events-api/reserved-events):
+
+##### [Create Order](https://siftscience.com/developers/docs/curl/events-api/reserved-events/create-order)
+``` js
+client.events.createOrder({
+  $user_id : '123',
+  $session_id: 'gigtleqddo84l8cm15qe4il'
+});
+```
