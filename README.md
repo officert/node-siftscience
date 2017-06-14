@@ -39,6 +39,7 @@ client.events.create({
 
 - [Labels](#labels)
 - [Score](#score)
+- [Decisions](#decisions)
 
 ## Debug mode
 
@@ -285,4 +286,32 @@ client.events.create({
   $return_score: true,
   $abuse_types: 'payment_abuse,promotion_abuse'
 });
+```
+
+## Decisions
+
+### [Apply Decisions](https://siftscience.com/developers/docs/curl/decisions-api/apply-decisions)
+
+```javascript
+client.decisions.createByAccountIdAndUserId('accountId', 'userId', {
+  decision_id : 'user_looks_ok_payment_abuse'
+});
+```
+
+### [User Decisions](https://siftscience.com/developers/docs/curl/decisions-api/decision-status)
+
+```javascript
+client.decisions.getByAccountIdAndUserId('accountId', 'userId');
+```
+
+### [Order Decisions](https://siftscience.com/developers/docs/curl/decisions-api/decision-status)
+
+```javascript
+client.decisions.getByAccountIdAndOrderId('accountId', 'orderId');
+```
+
+### [Decisions List](https://siftscience.com/developers/docs/curl/decisions-api/decisions-list)
+
+```javascript
+client.decisions.listByAccountId('accountId');
 ```
