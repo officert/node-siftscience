@@ -90,9 +90,7 @@ describe('lib', () => {
 
                 getStub.callCount.should.equal(1);
                 getStub.args[0][0].should.equal(`/users/${userId}/score`);
-                getStub.args[0][1].should.deepEqual({
-                  params
-                });
+                getStub.args[0][1].should.deepEqual(params);
               });
           });
         });

@@ -119,9 +119,7 @@ describe('lib', () => {
                 postStub.args[0][1].should.deepEqual(_.extend(data, {
                   $api_key: key
                 }));
-                postStub.args[0][2].should.deepEqual({
-                  params
-                });
+                postStub.args[0][2].should.deepEqual(params);
               });
           });
         });

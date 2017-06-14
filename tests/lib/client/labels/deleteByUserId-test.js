@@ -90,9 +90,7 @@ describe('lib', () => {
 
                 deleteStub.callCount.should.equal(1);
                 deleteStub.args[0][0].should.equal(`/users/${userId}/labels`);
-                deleteStub.args[0][1].should.deepEqual({
-                  params
-                });
+                deleteStub.args[0][1].should.deepEqual(params);
               });
           });
         });
