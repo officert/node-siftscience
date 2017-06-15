@@ -16,7 +16,7 @@ before(() => {
 describe('lib', () => {
   describe('client', () => {
     describe('decisions', () => {
-      describe('createByAccountIdAndUserId', () => {
+      describe('applyByAccountIdAndUserId', () => {
         afterEach(() => {
           sandbox.restore();
         });
@@ -32,7 +32,7 @@ describe('lib', () => {
           let accountId = null;
 
           it('should reject with an error', () => {
-            return siftScienceClient.decisions.createByAccountIdAndUserId(accountId)
+            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId)
               .then(should.not.exist)
               .catch(err => {
                 should.exist(err);
@@ -47,7 +47,7 @@ describe('lib', () => {
           let userId = null;
 
           it('should reject with an error', () => {
-            return siftScienceClient.decisions.createByAccountIdAndUserId(accountId, userId)
+            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId)
               .then(should.not.exist)
               .catch(err => {
                 should.exist(err);
@@ -73,7 +73,7 @@ describe('lib', () => {
           });
 
           it('should call v3HttpClient.post()', () => {
-            return siftScienceClient.decisions.createByAccountIdAndUserId(accountId, userId, data)
+            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId, data)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response.data);
@@ -104,7 +104,7 @@ describe('lib', () => {
           });
 
           it('should call v3HttpClient.post()', () => {
-            return siftScienceClient.decisions.createByAccountIdAndUserId(accountId, userId, data, params)
+            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId, data, params)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response.data);

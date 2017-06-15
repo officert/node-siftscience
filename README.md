@@ -293,7 +293,7 @@ client.events.create({
 ### [Apply Decisions](https://siftscience.com/developers/docs/curl/decisions-api/apply-decisions)
 
 ```javascript
-client.decisions.createByAccountIdAndUserId('accountId', 'userId', {
+client.decisions.applyByAccountIdAndUserId('accountId', 'userId', {
   decision_id : 'user_looks_ok_payment_abuse'
 });
 ```
