@@ -100,6 +100,41 @@ describe('lib', () => {
               });
           });
         });
+
+        describe('when options are passed', () => {
+          let path = '/foobar';
+          let params = {
+            query: 'string'
+          };
+          let options = {
+            auth: {
+              username: 'FOOBAR'
+            }
+          };
+          let expectedResponse = {};
+
+          let deleteStub;
+
+          before('stub httpClient._client.delete()', () => {
+            deleteStub = sandbox.stub(httpClient._client, 'delete')
+              .returns(Promise.resolve(expectedResponse));
+          });
+
+          it('should resolve and call httpClientClient._client.delete()', () => {
+            return httpClient.delete(path, params, options)
+              .then(response => {
+                should.exist(response);
+                response.should.deepEqual(expectedResponse);
+
+                deleteStub.callCount.should.equal(1);
+                deleteStub.args[0][0].should.equal(path);
+                deleteStub.args[0][1].should.deepEqual({
+                  auth: options.auth,
+                  params
+                });
+              });
+          });
+        });
       });
     });
   });

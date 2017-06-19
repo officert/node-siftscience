@@ -100,6 +100,41 @@ describe('lib', () => {
               });
           });
         });
+
+        describe('when options are passed', () => {
+          let path = '/foobar';
+          let params = {
+            query: 'string'
+          };
+          let options = {
+            auth: {
+              username: 'FOOBAR'
+            }
+          };
+          let expectedResponse = {};
+
+          let getStub;
+
+          before('stub httpClient._client.get()', () => {
+            getStub = sandbox.stub(httpClient._client, 'get')
+              .returns(Promise.resolve(expectedResponse));
+          });
+
+          it('should resolve and call v204Client._client.get()', () => {
+            return httpClient.get(path, params, options)
+              .then(response => {
+                should.exist(response);
+                response.should.deepEqual(expectedResponse);
+
+                getStub.callCount.should.equal(1);
+                getStub.args[0][0].should.equal(path);
+                getStub.args[0][1].should.deepEqual({
+                  params,
+                  auth: options.auth
+                });
+              });
+          });
+        });
       });
     });
   });

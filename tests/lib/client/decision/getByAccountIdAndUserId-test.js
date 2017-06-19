@@ -78,6 +78,12 @@ describe('lib', () => {
 
                 getStub.callCount.should.equal(1);
                 getStub.args[0][0].should.equal(`/accounts/${accountId}/users/${userId}/decisions`);
+                getStub.args[0][1].should.deepEqual({});
+                getStub.args[0][2].should.deepEqual({
+                  auth: {
+                    username: siftScienceClient._key
+                  }
+                });
               });
           });
         });
@@ -108,6 +114,11 @@ describe('lib', () => {
                 getStub.callCount.should.equal(1);
                 getStub.args[0][0].should.equal(`/accounts/${accountId}/users/${userId}/decisions`);
                 getStub.args[0][1].should.deepEqual(params);
+                getStub.args[0][2].should.deepEqual({
+                  auth: {
+                    username: siftScienceClient._key
+                  }
+                });
               });
           });
         });

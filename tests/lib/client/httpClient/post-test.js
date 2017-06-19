@@ -131,6 +131,45 @@ describe('lib', () => {
               });
           });
         });
+
+        describe('when options are passed', () => {
+          let path = '/foobar';
+          let body = {
+            key: 'value'
+          };
+          let params = {
+            query: 'string'
+          };
+          let options = {
+            auth: {
+              username: 'FOOBAR'
+            }
+          };
+          let response = {};
+
+          let postStub;
+
+          before('stub httpClient._client.post()', () => {
+            postStub = sandbox.stub(httpClient._client, 'post')
+              .returns(Promise.resolve(response));
+          });
+
+          it('should resolve and call httpClient._client.post()', () => {
+            return httpClient.post(path, body, params, options)
+              .then(result => {
+                should.exist(result);
+                result.should.deepEqual(response);
+
+                postStub.callCount.should.equal(1);
+                postStub.args[0][0].should.equal(path);
+                postStub.args[0][1].should.deepEqual(body);
+                postStub.args[0][2].should.deepEqual({
+                  auth: options.auth,
+                  params
+                });
+              });
+          });
+        });
       });
     });
   });
