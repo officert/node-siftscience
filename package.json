@@ -7,7 +7,7 @@
     "test": "make test"
   },
   "engines": {
-    "node": "6.10.3"
+    "node": ">=6"
   },
   "repository": {
     "type": "git",
@@ -32,9 +32,9 @@
   },
   "homepage": "https://github.com/officert/node-siftscience#readme",
   "dependencies": {
-    "axios": "0.16.2",
-    "bluebird": "3.5.0",
-    "lodash": "4.17.4"
+    "axios": "^0.16.2",
+    "bluebird": "^3.5.0",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "babel-eslint": "7.1.1",
