@@ -4,12 +4,12 @@ const sinon = require('sinon');
 const _ = require('lodash');
 
 let siftScience;
-let v204HttpClient;
+let v205HttpClient;
 let sandbox;
 
 before(() => {
   siftScience = require('../../../../lib');
-  v204HttpClient = require('../../../../lib/client/v204HttpClient');
+  v205HttpClient = require('../../../../lib/client/v205HttpClient');
 
   sandbox = sinon.sandbox.create();
 });
@@ -36,12 +36,12 @@ describe('lib', () => {
             data: {}
           };
 
-          before('stub v204HttpClient.post()', () => {
-            postStub = sandbox.stub(v204HttpClient, 'post')
+          before('stub v205HttpClient.post()', () => {
+            postStub = sandbox.stub(v205HttpClient, 'post')
               .returns(Promise.resolve(response));
           });
 
-          it('should call v204HttpClient.post()', () => {
+          it('should call v205HttpClient.post()', () => {
             return siftScienceClient.events.login()
               .then(result => {
                 should.exist(result);
@@ -67,12 +67,12 @@ describe('lib', () => {
             data: {}
           };
 
-          before('stub v204HttpClient.post()', () => {
-            postStub = sandbox.stub(v204HttpClient, 'post')
+          before('stub v205HttpClient.post()', () => {
+            postStub = sandbox.stub(v205HttpClient, 'post')
               .returns(Promise.resolve(response));
           });
 
-          it('should call v204HttpClient.post()', () => {
+          it('should call v205HttpClient.post()', () => {
             return siftScienceClient.events.login(data)
               .then(result => {
                 should.exist(result);
