@@ -2,12 +2,12 @@ const Promise = require('bluebird');
 const should = require('should');
 const sinon = require('sinon');
 
-let siftScience;
+let SiftScienceClient;
 let v205HttpClient;
 let sandbox;
 
 before(() => {
-  siftScience = require('../../../../lib');
+  SiftScienceClient = require('../../../../lib');
   v205HttpClient = require('../../../../lib/client/v205HttpClient');
 
   sandbox = sinon.sandbox.create();
@@ -25,7 +25,7 @@ describe('lib', () => {
         let siftScienceClient;
 
         before('create siftScienceClient', () => {
-          siftScienceClient = siftScience.init(key);
+          siftScienceClient = new SiftScienceClient(key);
         });
 
         describe('when called without userId', () => {

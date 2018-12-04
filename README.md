@@ -20,10 +20,10 @@ Create a Sift Science HTTP Client using your API Key:
 
 ```javascript
 //get the Sift Science factory
-const siftScience = require('node-siftscience');
+const SiftScienceClient = require('node-siftscience');
 
 //create an instance of the Sift Science client
-const client = siftScience.init('your API Key');
+const client = new SiftScienceClient('your API Key');
 
 //now you can use the client to make requests to Sift Science's API
 client.events.create({
@@ -33,20 +33,20 @@ client.events.create({
 
 ## Table of Contents
 
-- [Debug Mode](#debug mode)
+-   [Debug Mode](<#debug mode>)
 
-- [Events](#events)
+-   [Events](#events)
 
-- [Labels](#labels)
-- [Score](#score)
-- [Decisions](#decisions)
+-   [Labels](#labels)
+-   [Score](#score)
+-   [Decisions](#decisions)
 
 ## Debug mode
 
 When creating your Sift Science Client instance you can put it in debug mode to log any errors
 
 ```javascript
-const client = siftScience.init('your API Key', {
+const client = new SiftScienceClient('your API Key',{
   debugMode: true
 });
 ```

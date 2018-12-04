@@ -2,12 +2,12 @@ const _ = require('lodash');
 const should = require('should');
 const sinon = require('sinon');
 
-let siftScience;
+let SiftScienceClient;
 let v3HttpClient;
 let sandbox;
 
 before(() => {
-  siftScience = require('../../../../lib');
+  SiftScienceClient = require('../../../../lib');
   v3HttpClient = require('../../../../lib/client/v3HttpClient');
 
   sandbox = sinon.sandbox.create();
@@ -25,7 +25,7 @@ describe('lib', () => {
         let siftScienceClient;
 
         before('create siftScienceClient', () => {
-          siftScienceClient = siftScience.init(key);
+          siftScienceClient = new SiftScienceClient(key);
         });
 
         describe('when called without accountId', () => {
