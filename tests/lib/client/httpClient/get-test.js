@@ -60,7 +60,7 @@ describe('lib', () => {
               .returns(Promise.resolve(expectedResponse));
           });
 
-          it('should resolve and call v204Client._client.get()', () => {
+          it('should resolve and call v205Client._client.get()', () => {
             return httpClient.get(path)
               .then(response => {
                 should.exist(response);
@@ -86,7 +86,7 @@ describe('lib', () => {
               .returns(Promise.resolve(expectedResponse));
           });
 
-          it('should resolve and call v204Client._client.get()', () => {
+          it('should resolve and call v205Client._client.get()', () => {
             return httpClient.get(path, params)
               .then(response => {
                 should.exist(response);
@@ -120,7 +120,7 @@ describe('lib', () => {
               .returns(Promise.resolve(expectedResponse));
           });
 
-          it('should resolve and call v204Client._client.get()', () => {
+          it('should resolve and call v205Client._client.get()', () => {
             return httpClient.get(path, params, options)
               .then(response => {
                 should.exist(response);
