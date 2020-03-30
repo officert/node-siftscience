@@ -292,8 +292,21 @@ client.events.create({
 
 ### [Apply Decisions](https://siftscience.com/developers/docs/curl/decisions-api/apply-decisions)
 
+#### User decision
 ```javascript
 client.decisions.applyByAccountIdAndUserId('accountId', 'userId', {
+  decision_id : 'user_looks_ok_payment_abuse'
+});
+```
+#### Order decision
+```javascript
+client.decisions.applyByAccountIdAndOrderId('accountId', 'userId', 'orderId', {
+  decision_id : 'user_looks_ok_payment_abuse'
+});
+```
+#### Session decision
+```javascript
+client.decisions.applyByAccountIdAndSessionId('accountId', 'userId', 'sessionId', {
   decision_id : 'user_looks_ok_payment_abuse'
 });
 ```
