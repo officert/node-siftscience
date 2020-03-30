@@ -129,6 +129,28 @@ describe('lib', () => {
               });
           });
         });
+
+        describe('when call return an error', () => {
+          const accountId = '123';
+          const userId = '123';
+          const error = new Error('Some error');
+
+
+          before('stub v3HttpClient.post()', () => {
+            sandbox.stub(v3HttpClient, 'post')
+              .returns(Promise.reject(error));
+          });
+
+          it('should also throw error if v3HttpClient.post() throw it', () => {
+            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId)
+              .then(should.not.exist)
+              .catch((err) => {
+                should.exist(err);
+                err.should.be.instanceOf(Error);
+                err.message.should.equal(error.message);
+              });
+          });
+        });
       });
     });
   });
