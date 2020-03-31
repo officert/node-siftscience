@@ -123,6 +123,38 @@ describe('lib', () => {
           });
         });
       });
+
+      describe('when call return an error', () => {
+        const accountId = '123';
+        const orderId = '123';
+        const error = new Error('Some error');
+
+        const key = '123';
+        let siftScienceClient;
+
+        before('create siftScienceClient', () => {
+          siftScienceClient = new SiftScienceClient(key);
+        });
+
+        before('stub v3HttpClient.get()', () => {
+          sandbox.stub(v3HttpClient, 'get')
+            .returns(Promise.reject(error));
+        });
+
+        afterEach(() => {
+          sandbox.restore();
+        });
+
+        it('should also throw error if v3HttpClient.get() throw it', () => {
+          return siftScienceClient.decisions.getByAccountIdAndOrderId(accountId, orderId)
+            .then(should.not.exist)
+            .catch((err) => {
+              should.exist(err);
+              err.should.be.instanceOf(Error);
+              err.message.should.equal(error.message);
+            });
+        });
+      });
     });
   });
 });

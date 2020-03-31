@@ -16,7 +16,7 @@ before(() => {
 describe('lib', () => {
   describe('client', () => {
     describe('decisions', () => {
-      describe('applyByAccountIdAndUserId', () => {
+      describe('applyByAccountIdAndSessionId', () => {
         afterEach(() => {
           sandbox.restore();
         });
@@ -29,10 +29,12 @@ describe('lib', () => {
         });
 
         describe('when called without accountId', () => {
-          let accountId = null;
+          const accountId = null;
+          const userId = '123';
+          const sessionId = '123';
 
           it('should reject with an error', () => {
-            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId)
+            return siftScienceClient.decisions.applyByAccountIdAndSessionId(accountId, userId, sessionId)
               .then(should.not.exist)
               .catch(err => {
                 should.exist(err);
@@ -43,11 +45,12 @@ describe('lib', () => {
         });
 
         describe('when called without userId', () => {
-          let accountId = '123';
-          let userId = null;
+          const accountId = '123';
+          const sessionId = '123';
+          const userId = null;
 
           it('should reject with an error', () => {
-            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId)
+            return siftScienceClient.decisions.applyByAccountIdAndSessionId(accountId, userId, sessionId)
               .then(should.not.exist)
               .catch(err => {
                 should.exist(err);
@@ -57,11 +60,28 @@ describe('lib', () => {
           });
         });
 
-        describe('when called with an accountId and userId', () => {
-          let accountId = '123';
-          let userId = '123';
-          let data = {};
-          let response = {
+        describe('when called without sessionId', () => {
+          const accountId = '123';
+          const sessionId = null;
+          const userId = '123';
+
+          it('should reject with an error', () => {
+            return siftScienceClient.decisions.applyByAccountIdAndSessionId(accountId, userId, sessionId)
+              .then(should.not.exist)
+              .catch(err => {
+                should.exist(err);
+                err.should.be.instanceOf(Error);
+                err.message.should.equal('sessionId is required');
+              });
+          });
+        });
+
+        describe('when called with an accountId, userId and sessionId', () => {
+          const accountId = '123';
+          const userId = '123';
+          const sessionId = '123';
+          const data = {};
+          const response = {
             data: {}
           };
 
@@ -73,13 +93,13 @@ describe('lib', () => {
           });
 
           it('should call v3HttpClient.post()', () => {
-            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId, data)
+            return siftScienceClient.decisions.applyByAccountIdAndSessionId(accountId, userId, sessionId, data)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response.data);
 
                 postStub.callCount.should.equal(1);
-                postStub.args[0][0].should.equal(`/accounts/${accountId}/users/${userId}/decisions`);
+                postStub.args[0][0].should.equal(`/accounts/${accountId}/users/${userId}/sessions/${sessionId}/decisions`);
                 postStub.args[0][1].should.deepEqual(data);
                 postStub.args[0][2].should.deepEqual({});
                 postStub.args[0][3].should.deepEqual({
@@ -92,13 +112,14 @@ describe('lib', () => {
         });
 
         describe('when called with params', () => {
-          let accountId = '123';
-          let userId = '123';
-          let data = {};
-          let params = {
+          const accountId = '123';
+          const userId = '123';
+          const sessionId = '123';
+          const data = {};
+          const params = {
             foo: 'bar'
           };
-          let response = {
+          const response = {
             data: {}
           };
 
@@ -110,13 +131,13 @@ describe('lib', () => {
           });
 
           it('should call v3HttpClient.post()', () => {
-            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId, data, params)
+            return siftScienceClient.decisions.applyByAccountIdAndSessionId(accountId, userId, sessionId, data, params)
               .then(result => {
                 should.exist(result);
                 result.should.deepEqual(response.data);
 
                 postStub.callCount.should.equal(1);
-                postStub.args[0][0].should.equal(`/accounts/${accountId}/users/${userId}/decisions`);
+                postStub.args[0][0].should.equal(`/accounts/${accountId}/users/${userId}/sessions/${sessionId}/decisions`);
                 postStub.args[0][1].should.deepEqual(_.extend(data, {
                   $api_key: key
                 }));
@@ -133,6 +154,7 @@ describe('lib', () => {
         describe('when call return an error', () => {
           const accountId = '123';
           const userId = '123';
+          const sessionId = '123';
           const error = new Error('Some error');
 
 
@@ -142,7 +164,7 @@ describe('lib', () => {
           });
 
           it('should also throw error if v3HttpClient.post() throw it', () => {
-            return siftScienceClient.decisions.applyByAccountIdAndUserId(accountId, userId)
+            return siftScienceClient.decisions.applyByAccountIdAndSessionId(accountId, userId, sessionId)
               .then(should.not.exist)
               .catch((err) => {
                 should.exist(err);
