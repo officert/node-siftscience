@@ -110,6 +110,15 @@ client.events.updateAccount({
 });
 ```
 
+### [Update Password](https://sift.com/developers/docs/curl/events-api/reserved-events/update-password)
+
+```javascript
+client.events.updatePassword({
+  $user_id : '123',
+  $session_id: 'gigtleqddo84l8cm15qe4il'
+});
+```
+
 ### [Create Content](https://siftscience.com/developers/docs/curl/events-api/reserved-events/create-content)
 
 ```javascript
