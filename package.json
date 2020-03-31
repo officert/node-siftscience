@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/officert/node-siftscience#readme",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "bluebird": "^3.5.0",
     "lodash": "^4.17.4"
   },
